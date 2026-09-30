@@ -19,8 +19,6 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
-        /* واجهة الدعوة الخارجية الملكية */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -34,28 +32,25 @@
             align-items: center;
             z-index: 999;
             cursor: pointer;
-            transition: opacity 1s ease, transform 1s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         .envelope {
             background: #1c2541;
             padding: 50px 35px;
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             border: 2px solid #d4af37;
             max-width: 450px;
             width: 90%;
-            position: relative;
-            transform: perspective(1000px) rotateX(0deg);
-            transition: transform 0.8s ease;
+            transition: transform 0.3s ease;
         }
         .envelope:hover {
-            transform: perspective(1000px) rotateX(5deg) scale(1.02);
+            transform: scale(1.02);
         }
         .envelope h3 {
             font-family: 'Amiri', serif;
             color: #d4af37;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+            font-size: 1.6rem;
             margin-bottom: 10px;
         }
         .envelope h1 {
@@ -65,39 +60,27 @@
             margin: 15px 0;
         }
         .envelope p {
-            color: #a0aec0;
-            font-size: 1.05rem;
-            margin-bottom: 30px;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
         }
         .open-btn {
-            background: linear-gradient(135deg, #d4af37, #aa820a);
+            background: #d4af37;
             color: #0b132b;
             border: none;
-            padding: 14px 40px;
-            font-size: 1.2rem;
-            border-radius: 35px;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(212,175,55,0.4);
-            transition: 0.3s;
         }
-        .open-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(212,175,55,0.6);
-        }
-
-        /* المحتوى الرئيسي */
         .main-content {
             display: none;
             max-width: 600px;
             margin: 0 auto;
             padding: 30px 15px;
-            animation: fadeIn 1.2s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         section {
             background: #1c2541;
@@ -163,12 +146,7 @@
             text-decoration: none;
             font-weight: 700;
             box-shadow: 0 4px 15px rgba(212,175,55,0.3);
-            transition: 0.3s;
         }
-        .map-btn:hover {
-            background: #b89728;
-        }
-        /* العد التنازلي */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -196,7 +174,6 @@
 </head>
 <body>
 
-    <!-- واجهة الدعوة الملكية الخارجية -->
     <div id="welcome-screen" onclick="openInvitation()">
         <div class="envelope">
             <h3>دعوة زفاف مباركة</h3>
@@ -206,12 +183,10 @@
         </div>
     </div>
 
-    <!-- محتوى الدعوة الداخلي -->
     <div class="main-content" id="invitationContent">
-        
         <section>
             <div class="quran-verse">
-                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
+                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ﴾
             </div>
             <p>يسعدنا تشريفكم لنا في ليلة عمرنا</p>
             <div class="names">أحمد & منار</div>
@@ -226,22 +201,10 @@
         <section>
             <h3 class="section-title">العد التنازلي ليومنا المنتظر</h3>
             <div class="countdown-container">
-                <div class="countdown-box">
-                    <span id="days">00</span>
-                    <small>يوم</small>
-                </div>
-                <div class="countdown-box">
-                    <span id="hours">00</span>
-                    <small>ساعة</small>
-                </div>
-                <div class="countdown-box">
-                    <span id="minutes">00</span>
-                    <small>دقيقة</small>
-                </div>
-                <div class="countdown-box">
-                    <span id="seconds">00</span>
-                    <small>ثانية</small>
-                </div>
+                <div class="countdown-box"><span id="days">00</span><small>يوم</small></div>
+                <div class="countdown-box"><span id="hours">00</span><small>ساعة</small></div>
+                <div class="countdown-box"><span id="minutes">00</span><small>دقيقة</small></div>
+                <div class="countdown-box"><span id="seconds">00</span><small>ثانية</small></div>
             </div>
         </section>
 
@@ -253,16 +216,13 @@
                     <p>🕒 <strong>الساعة ٣:٠٠ عصراً</strong></p>
                 </div>
             </div>
-
             <div>
                 <h3 class="section-title">مكان الحفل</h3>
                 <div class="details-box">
                     <p>📍 <strong>قاعة عُبار</strong></p>
                     <p>منيا القمح - الشرقية، مصر</p>
                 </div>
-                <a href="https://maps.google.com/?q=قاعة+عُبار+منيا+القمح" target="_blank" class="map-btn">
-                    اضغط للوصول للمكان 🗺️
-                </a>
+                <a href="https://maps.google.com/?q=قاعة+عُبار+منيا+القمح" target="_blank" class="map-btn">اضغط للوصول للمكان 🗺️</a>
             </div>
         </section>
 
@@ -271,7 +231,6 @@
             <p>نسأل الله أن يبارك في هذا الزواج، وأن يرزقنا السعادة والمودة والرحمة، وأن يجعل أيامكم كلها أفراحاً.</p>
             <div class="names" style="font-size: 1.8rem; margin-top: 15px;">أحمد & منار</div>
         </section>
-
     </div>
 
     <script>
@@ -286,29 +245,20 @@
             }, 800);
         }
 
-        // حساب العد التنازلي (25 نوفمبر 2026 الساعة 3:00 عصراً)
         const weddingDate = new Date("November 25, 2026 15:00:00").getTime();
-
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                return;
-            }
-
+            if (distance < 0) { clearInterval(timer); return; }
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("days").innerText = String(days).padStart(2, '0');
             document.getElementById("hours").innerText = String(hours).padStart(2, '0');
             document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
             document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
         }, 1000);
     </script>
-
 </body>
 </html>
