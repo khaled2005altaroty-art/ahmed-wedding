@@ -20,14 +20,14 @@
             overflow-x: hidden;
         }
 
-        /* واجهة الظرف الخارجي باللون الكحلي والذهبي الفخم */
+        /* واجهة الظرف الهندسي بالألوان الكحلي والذهبي */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #1c2541 0%, #0b132b 100%);
+            background: #0b132b;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,70 +36,126 @@
             cursor: pointer;
             transition: opacity 1s ease, transform 1s ease;
         }
-        .envelope-container {
+        .envelope-wrapper {
             position: relative;
             width: 90%;
-            max-width: 440px;
+            max-width: 420px;
+            height: 300px;
             background: #1c2541;
             border: 2px solid #d4af37;
-            padding: 40px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            border-radius: 15px;
-            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
-        /* الورقة التي تخرج من الظرف */
-        .envelope-paper {
-            background: #0b132b;
-            border: 1px solid rgba(212,175,55,0.4);
-            padding: 30px 20px;
-            border-radius: 10px;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s ease 0.3s;
+        
+        /* أجزاء الظرف المثلثة المائلة (مثل الصورة) بلون كحلي متناسق مع إطار ذهبي */
+        .envelope-flap-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: #151d33;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            transition: transform 0.8s ease;
+            transform-origin: top;
+            z-index: 3;
         }
-        .envelope-container.opened .envelope-paper {
+        .envelope-flap-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: #18223a;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 2;
+        }
+        .envelope-flap-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 210px;
+            height: 100%;
+            background: #131b30;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            z-index: 2;
+        }
+        .envelope-flap-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 210px;
+            height: 100%;
+            background: #131b30;
+            clip-path: polygon(100% 0, 0 50%, 100% 100%);
+            z-index: 2;
+        }
+
+        /* ختم منتصف الظرف (القلب وأسماء المصغرة) */
+        .envelope-seal {
+            position: absolute;
+            z-index: 4;
+            width: 65px;
+            height: 65px;
+            background: #d4af37;
+            color: #0b132b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Amiri', serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.5);
+            border: 2px solid #fff;
+            transition: transform 0.5s ease;
+        }
+
+        /* الورقة الداخلية التي تخرج من الظرف */
+        .inside-paper {
+            position: absolute;
+            width: 85%;
+            background: #0b132b;
+            border: 1px solid #d4af37;
+            padding: 25px 15px;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 1;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+        }
+
+        /* حالة فتح الظرف عند النقر */
+        .envelope-wrapper.open .envelope-flap-top {
+            transform: rotateX(180deg);
+            opacity: 0;
+        }
+        .envelope-wrapper.open .envelope-seal {
+            transform: scale(0);
+            opacity: 0;
+        }
+        .envelope-wrapper.open .inside-paper {
             transform: translateY(0);
             opacity: 1;
+            z-index: 5;
         }
-        .envelope-title {
+
+        .instruction-text {
+            margin-top: 20px;
             font-family: 'Amiri', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #d4af37;
-            margin-bottom: 5px;
         }
-        .envelope-names {
-            font-family: 'Amiri', serif;
-            color: #ffffff;
-            font-size: 2.2rem;
-            margin: 15px 0;
-        }
-        .envelope-heart {
-            color: #d4af37;
-            font-size: 1.5rem;
-            margin: 0 8px;
-        }
-        .sub-en {
+        .instruction-sub {
             font-size: 0.9rem;
             color: #94a3b8;
-            margin-bottom: 15px;
-        }
-        .open-btn {
-            background: linear-gradient(135deg, #d4af37, #aa820a);
-            color: #0b132b;
-            border: none;
-            padding: 12px 35px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .open-btn:hover {
-            transform: scale(1.05);
+            margin-bottom: 10px;
         }
 
         /* المحتوى الرئيسي (فواصل وتأثير ظهور تدريجي) */
@@ -169,6 +225,11 @@
             line-height: 1.8;
             color: #cbd5e1;
             margin: 8px 0;
+        }
+        .sub-en {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
         }
         .details-box {
             background: #0b132b;
@@ -247,19 +308,24 @@
 
     <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
 
-    <!-- واجهة الظرف الكحلي والذهبي مع الورقة المتحركة -->
+    <!-- واجهة الظرف الهندسي -->
     <div id="welcome-screen">
-        <div class="envelope-container" id="envBox" onclick="openInvitation()">
-            <div class="envelope-title">دعوة زفاف مباركة</div>
-            <div class="sub-en">Blessed Wedding Invitation</div>
+        <div class="instruction-text">إضغط لفتح الدعوة</div>
+        <div class="instruction-sub">Tap to open</div>
+        
+        <div class="envelope-wrapper" id="envWrapper" onclick="openInvitation()">
+            <div class="envelope-flap-top"></div>
+            <div class="envelope-flap-bottom"></div>
+            <div class="envelope-flap-left"></div>
+            <div class="envelope-flap-right"></div>
             
-            <div class="envelope-paper">
-                <div class="envelope-names">أحمد <span class="envelope-heart">♥</span> منار</div>
-                <div class="sub-en">Ahmed & Manar</div>
-                <p style="font-size: 0.95rem; color: #d4af37;">انقر هنا لفتح الدعوة الرسمية</p>
-            </div>
+            <div class="envelope-seal">أ ♥ م</div>
 
-            <button class="open-btn">فتح الدعوة 💌 Open</button>
+            <!-- الورقة التي تخرج من الظرف عند النقر -->
+            <div class="inside-paper">
+                <div style="font-family: 'Amiri', serif; color: #d4af37; font-size: 1.3rem;">أحمد & منار</div>
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 5px;">Ahmed & Manar Wedding</div>
+            </div>
         </div>
     </div>
 
@@ -337,12 +403,12 @@
         const musicBtn = document.getElementById('music-control');
 
         function openInvitation() {
-            const envBox = document.getElementById('envBox');
+            const envWrapper = document.getElementById('envWrapper');
             const welcome = document.getElementById('welcome-screen');
             const content = document.getElementById('invitationContent');
             
-            // تفعيل حركة الورقة والخروج
-            envBox.classList.add('opened');
+            // فتح الظرف وإخراج الورقة
+            envWrapper.classList.add('open');
 
             // تشغيل الموسيقى
             music.play().catch(e => console.log("Audio play blocked", e));
@@ -356,7 +422,7 @@
                     content.style.display = 'block';
                     checkScroll();
                 }, 800);
-            }, 1000);
+            }, 1200);
         }
 
         function toggleMusic() {
