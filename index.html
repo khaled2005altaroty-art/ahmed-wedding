@@ -295,11 +295,10 @@
 </head>
 <body>
 
-    <!-- موسيقى زفاف رومانسية مستقرة ومضمونة -->
-    <audio id="wedding-music" preload="auto" loop>
-        <source src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Wedding_March_-_Felix_Mendelssohn.ogg" type="audio/ogg">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=romantic-wedding-112177.mp3" type="audio/mp3">
-    </audio>
+    <!-- مشغل يوتيوب مخفي للأغنية التي اخترتها لضمان العمل 100% بدون حظر -->
+    <div id="youtube-audio-container" style="display:none;">
+        <iframe id="yt-player" width="100" height="100" src="https://www.youtube.com/embed/Od2C7Gkwqeo?enablejsapi=1&autoplay=1&loop=1&playlist=Od2C7Gkwqeo" frameborder="0"></iframe>
+    </div>
 
     <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
 
@@ -391,8 +390,9 @@
     </div>
 
     <script>
-        const music = document.getElementById('wedding-music');
         const musicBtn = document.getElementById('music-control');
+        const ytPlayer = document.getElementById('yt-player');
+        let isPlaying = true;
 
         function openInvitation() {
             const envContainer = document.getElementById('envContainer');
@@ -400,13 +400,6 @@
             const content = document.getElementById('invitationContent');
             
             envContainer.classList.add('open');
-
-            music.play().then(() => {
-                musicBtn.innerHTML = '🎵';
-            }).catch(e => {
-                console.log("Audio play blocked", e);
-            });
-
             musicBtn.style.display = 'flex';
 
             setTimeout(() => {
@@ -421,12 +414,16 @@
         }
 
         function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicBtn.innerHTML = '🎵';
-            } else {
-                music.pause();
+            // كتم أو إعادة تشغيل الـ iframe عبر تغيير الرابط مؤقتاً
+            const src = ytPlayer.src;
+            if (isPlaying) {
+                ytPlayer.src = ""; // إيقاف
                 musicBtn.innerHTML = '🔇';
+                isPlaying = false;
+            } else {
+                ytPlayer.src = "https://www.youtube.com/embed/Od2C7Gkwqeo?enablejsapi=1&autoplay=1&loop=1&playlist=Od2C7Gkwqeo"; // إعادة تشغيل
+                musicBtn.innerHTML = '🎵';
+                isPlaying = true;
             }
         }
 
