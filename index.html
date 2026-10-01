@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* واجهة الظرف المطابقة تماماً للألوان الكحلي والذهبي */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -296,14 +295,14 @@
 </head>
 <body>
 
-    <!-- الموسيقى الخلفية الرومانسية المضمونة -->
+    <!-- ملف صوتي مباشر ومضمون 100% -->
     <audio id="wedding-music" preload="auto" loop>
+        <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=romantic-wedding-112177.mp3" type="audio/mp3">
     </audio>
 
     <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
 
-    <!-- واجهة الظرف الهندسي الكحلي والذهبي -->
     <div id="welcome-screen">
         <div class="instruction-title">إضغط لفتح الدعوة</div>
         <div class="instruction-sub">Tap to open</div>
@@ -376,7 +375,7 @@
                 <p class="sub-en">Minya Al Qamh - Sharqia, Egypt</p>
             </div>
             <a href="https://maps.google.com/?q=قاعة+عُبار+منيا+القمح" target="_blank" class="map-btn">
-                اضغط للوصول للمكان 🗺️ Get Directions
+                اضغط للوصول للمكان 🗺️️ Get Directions
             </a>
         </section>
 
@@ -402,7 +401,12 @@
             
             envContainer.classList.add('open');
 
-            music.play().catch(e => console.log("Audio play blocked", e));
+            music.play().then(() => {
+                musicBtn.innerHTML = '🎵';
+            }).catch(e => {
+                console.log("Audio play blocked", e);
+            });
+
             musicBtn.style.display = 'flex';
 
             setTimeout(() => {
@@ -419,10 +423,10 @@
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                musicBtn.innerText = '🎵';
+                musicBtn.innerHTML = '🎵';
             } else {
                 music.pause();
-                musicBtn.innerText = '🔇';
+                musicBtn.innerHTML = '🔇';
             }
         }
 
