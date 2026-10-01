@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* واجهة الظرف المطابقة للصورة تماماً بالألوان الكحلي والذهبي */
+        /* واجهة الظرف المطابقة تماماً للألوان الكحلي والذهبي */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -49,13 +49,12 @@
             margin-bottom: 25px;
         }
 
-        /* هيكل الظرف الأساسي */
         .envelope-container {
             position: relative;
             width: 90%;
             max-width: 440px;
             height: 280px;
-            background: #141c33; /* كحلي دافئ للجسم الخلفي */
+            background: #141c33;
             border: 2px solid #d4af37;
             border-radius: 6px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
@@ -65,14 +64,13 @@
             overflow: hidden;
         }
 
-        /* المثلث العلوي القابل للفتح (مثل الصورة) */
         .flap-top {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 140px;
-            background: #1c2642; /* درجة كحلي مميزة للغطاء العلوي */
+            background: #1c2642;
             clip-path: polygon(0 0, 50% 100%, 100% 0);
             border-bottom: 1px solid rgba(212,175,55,0.4);
             transform-origin: top;
@@ -80,7 +78,6 @@
             z-index: 4;
         }
 
-        /* المثلثات الجانبية والفلابية للظرف */
         .flap-left {
             position: absolute;
             top: 0;
@@ -112,7 +109,6 @@
             z-index: 2;
         }
 
-        /* ختم منتصف الظرف (دائرة ذهبية بالأسماء تماماً كالصورة) */
         .envelope-seal {
             position: absolute;
             z-index: 5;
@@ -132,7 +128,6 @@
             transition: transform 0.5s ease, opacity 0.4s ease;
         }
 
-        /* ورقة الدعوة التي تخرج من الداخل عند الفتح */
         .envelope-paper {
             position: absolute;
             width: 82%;
@@ -147,7 +142,6 @@
             transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
         }
 
-        /* تأثير فتح الظرف عند النقر */
         .envelope-container.open .flap-top {
             transform: rotateX(180deg);
             opacity: 0;
@@ -162,7 +156,6 @@
             z-index: 6;
         }
 
-        /* المحتوى الرئيسي للدعوة (فواصل وتأثير ظهور تدريجي) */
         .main-content {
             display: none;
             max-width: 650px;
@@ -257,7 +250,6 @@
         .map-btn:hover {
             background: #e6c553;
         }
-        /* العد التنازلي */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -282,7 +274,6 @@
             color: #94a3b8;
         }
 
-        /* زر تشغيل الموسيقى الثابت */
         #music-control {
             position: fixed;
             bottom: 20px;
@@ -305,14 +296,14 @@
 </head>
 <body>
 
-    <!-- الموسيقى الخلفية الرومانسية -->
-    <audio id="wedding-music" loop>
-        <source src="https://archive.org/download/AbdelHalimHafiz_563/AwlMaraThobYaAlby.mp3" type="audio/mp3">
+    <!-- الموسيقى الخلفية الرومانسية المضمونة -->
+    <audio id="wedding-music" preload="auto" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=romantic-wedding-112177.mp3" type="audio/mp3">
     </audio>
 
     <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
 
-    <!-- واجهة الظرف المطابقة تماماً للصورة بالألوان الكحلي والذهبي -->
+    <!-- واجهة الظرف الهندسي الكحلي والذهبي -->
     <div id="welcome-screen">
         <div class="instruction-title">إضغط لفتح الدعوة</div>
         <div class="instruction-sub">Tap to open</div>
@@ -323,10 +314,8 @@
             <div class="flap-left"></div>
             <div class="flap-right"></div>
 
-            <!-- ختم المنتصف (القلب وأسماء العريسين) -->
             <div class="envelope-seal">أ ♥ م</div>
 
-            <!-- ورقة الدعوة التي تخرج عند الفتح -->
             <div class="envelope-paper">
                 <div style="font-family: 'Amiri', serif; color: #d4af37; font-size: 1.35rem;">أحمد & منار</div>
                 <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">Ahmed & Manar Wedding</div>
@@ -334,7 +323,6 @@
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي للدعوة (فواصل وتأثير ظهور تدريجي) -->
     <div class="main-content" id="invitationContent">
         
         <section class="scroll-reveal">
@@ -412,10 +400,8 @@
             const welcome = document.getElementById('welcome-screen');
             const content = document.getElementById('invitationContent');
             
-            // فتح الظرف
             envContainer.classList.add('open');
 
-            // تشغيل الموسيقى
             music.play().catch(e => console.log("Audio play blocked", e));
             musicBtn.style.display = 'flex';
 
