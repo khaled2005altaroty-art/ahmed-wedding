@@ -20,14 +20,14 @@
             overflow-x: hidden;
         }
 
-        /* واجهة الظرف الخارجي المتحرك */
+        /* واجهة الظرف الخارجي المطابق للدعوة الثانية */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #1c2541 0%, #0b132b 100%);
+            background: #f4f4f4; /* خلفية فاتحة كالظرف الحقيقي */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,67 +36,59 @@
             cursor: pointer;
             transition: opacity 1s ease, transform 1s ease;
         }
-        .envelope-wrapper {
+        .envelope-container {
             position: relative;
-            background: #1c2541;
             width: 90%;
-            max-width: 420px;
-            padding: 50px 30px;
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            border: 2px solid #d4af37;
-            transform: translateY(0);
-            transition: transform 0.6s ease;
+            max-width: 480px;
+            background: #e6e6e6;
+            padding: 40px 20px 60px 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            text-align: center;
         }
-        .envelope-wrapper:hover {
-            transform: translateY(-5px);
+        .envelope-text-top {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: #444;
+            margin-bottom: 5px;
         }
-        .envelope-seal {
-            width: 60px;
-            height: 60px;
-            background: #d4af37;
-            color: #0b132b;
+        .envelope-text-sub {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        /* تصميم غطاء الظرف المثلث من الأعلى */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140px;
+            background: #d8d8d8;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            pointer-events: none;
+        }
+        /* ختم الظرف في المنتصف */
+        .envelope-seal-badge {
+            position: relative;
+            z-index: 2;
+            width: 75px;
+            height: 75px;
+            background: #b5a48b;
+            color: #fff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Amiri', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
-        }
-        .envelope-title {
-            font-family: 'Amiri', serif;
-            color: #d4af37;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        .envelope-names {
-            font-family: 'Amiri', serif;
-            color: #ffffff;
-            font-size: 2.3rem;
-            margin: 15px 0;
-        }
-        .open-btn {
-            background: linear-gradient(135deg, #d4af37, #aa820a);
-            color: #0b132b;
-            border: none;
-            padding: 12px 35px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-        .open-btn:hover {
-            transform: scale(1.05);
+            margin: 30px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
         }
 
-        /* المحتوى الرئيسي مع الفواصل وتأثير الظهور */
+        /* المحتوى الرئيسي (أقسام منفصلة تظهر تدريجياً) */
         .main-content {
             display: none;
             max-width: 650px;
@@ -232,29 +224,25 @@
 </head>
 <body>
 
-    <!-- مشغل الموسيقى (أغنية أنا لحبيبي - فيروز أو ما يشابهها من روابط مباشرة) -->
+    <!-- الموسيقى الخلفية الرومانسية -->
     <audio id="wedding-music" loop>
-        <source src="https://cdns.system.com/audio/Fairouz-AnaLhabiby.mp3" type="audio/mp3">
-        <!-- رابط بديل مباشر للموسيقى -->
-        <source src="https://actions.google.com/sounds/v1/ambiences/daytime_forest_bonfire.ogg" type="audio/ogg">
+        <source src="https://archive.org/download/AbdelHalimHafiz_563/AwlMaraThobYaAlby.mp3" type="audio/mp3">
     </audio>
 
     <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
 
-    <!-- واجهة الظرف الخارجي -->
+    <!-- واجهة الظرف الخارجي المطابق للدعوة الثانية -->
     <div id="welcome-screen" onclick="openInvitation()">
-        <div class="envelope-wrapper">
-            <div class="envelope-seal">أ & م</div>
-            <div class="envelope-title">دعوة زفاف مباركة</div>
-            <div class="sub-en">Blessed Wedding Invitation</div>
-            <div class="envelope-names">أحمد & منار</div>
-            <p>انقر لفتح الظرف وعرض الدعوة</p>
-            <div class="sub-en">Tap to open envelope</div>
-            <button class="open-btn">فتح الدعوة 💌 Open</button>
+        <div class="envelope-container">
+            <div class="envelope-flap"></div>
+            <div class="envelope-text-top">إضغط لفتح الدعوة</div>
+            <div class="envelope-text-sub">Tap to open</div>
+            
+            <div class="envelope-seal-badge">أ ♥ م</div>
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي (أقسام منفصلة تظهر تدريجياً) -->
+    <!-- المحتوى الرئيسي (فواصل وتأثير ظهور تدريجي) -->
     <div class="main-content" id="invitationContent">
         
         <section class="scroll-reveal">
@@ -328,7 +316,7 @@
             const welcome = document.getElementById('welcome-screen');
             const content = document.getElementById('invitationContent');
             
-            // تشغيل الموسيقى عند فتح الظرف
+            // تشغيل الموسيقى الرومانسية عند النشر
             music.play().catch(e => console.log("Audio play blocked", e));
             musicBtn.style.display = 'flex';
 
@@ -337,7 +325,7 @@
             setTimeout(() => {
                 welcome.style.display = 'none';
                 content.style.display = 'block';
-                checkScroll(); // تفعيل ظهور العناصر الأولى
+                checkScroll();
             }, 800);
         }
 
@@ -351,12 +339,11 @@
             }
         }
 
-        // تأثير الظهور عند التمرير للأسفل (Fade in on scroll)
         function checkScroll() {
             const sections = document.querySelectorAll('.scroll-reveal');
             const triggerBottom = window.innerHeight * 0.85;
 
-            sections.section = sections.forEach(sec => {
+            sections.forEach(sec => {
                 const secTop = sec.getBoundingClientRect().top;
                 if (secTop < triggerBottom) {
                     sec.classList.add('visible');
@@ -366,7 +353,6 @@
 
         window.addEventListener('scroll', checkScroll);
 
-        // العد التنازلي
         const weddingDate = new Date("November 25, 2026 15:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
