@@ -279,28 +279,26 @@
             left: 20px;
             background: #d4af37;
             color: #0b132b;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.2rem;
+            border: 2px solid #fff;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: bold;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             display: none;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- مشغل يوتيوب مخفي للأغنية التي اخترتها لضمان العمل 100% بدون حظر -->
-    <div id="youtube-audio-container" style="display:none;">
-        <iframe id="yt-player" width="100" height="100" src="https://www.youtube.com/embed/Od2C7Gkwqeo?enablejsapi=1&autoplay=1&loop=1&playlist=Od2C7Gkwqeo" frameborder="0"></iframe>
-    </div>
-
-    <button id="music-control" onclick="toggleMusic()" title="تشغيل / إيقاف الموسيقى">🎵</button>
+    <!-- زر تحكم مرئي وواضح يشغل الأغنية بضغطة زر مضمونة -->
+    <button id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> <span id="music-text">تشغيل الأغنية</span>
+    </button>
 
     <div id="welcome-screen">
         <div class="instruction-title">إضغط لفتح الدعوة</div>
@@ -389,10 +387,30 @@
 
     </div>
 
+    <!-- مشغل يوتيوب مخفي تماماً -->
+    <div id="player-container" style="display:none;"></div>
+
+    <!-- استدعاء مكتبة يوتيوب الرسمية لتشغيل الصوت بسلاسة -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        let player;
         const musicBtn = document.getElementById('music-control');
-        const ytPlayer = document.getElementById('yt-player');
-        let isPlaying = true;
+        const musicIcon = document.getElementById('music-icon');
+        const musicText = document.getElementById('music-text');
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player-container', {
+                height: '0',
+                width: '0',
+                videoId: 'Od2C7Gkwqeo',
+                playerVars: {
+                    'autoplay': 0,
+                    'loop': 1,
+                    'playlist': 'Od2C7Gkwqeo'
+                }
+            });
+        }
 
         function openInvitation() {
             const envContainer = document.getElementById('envContainer');
@@ -401,6 +419,14 @@
             
             envContainer.classList.add('open');
             musicBtn.style.display = 'flex';
+
+            // محاولة تشغيل الأغنية تلقائياً
+            if (player && player.playVideo) {
+                player.playVideo();
+                isPlaying = true;
+                musicIcon.innerHTML = '🎵';
+                musicText.innerHTML = 'إيقاف الأغنية';
+            }
 
             setTimeout(() => {
                 welcome.style.opacity = '0';
@@ -414,15 +440,16 @@
         }
 
         function toggleMusic() {
-            // كتم أو إعادة تشغيل الـ iframe عبر تغيير الرابط مؤقتاً
-            const src = ytPlayer.src;
+            if (!player) return;
             if (isPlaying) {
-                ytPlayer.src = ""; // إيقاف
-                musicBtn.innerHTML = '🔇';
+                player.pauseVideo();
+                musicIcon.innerHTML = '🔇';
+                musicText.innerHTML = 'تشغيل الأغنية';
                 isPlaying = false;
             } else {
-                ytPlayer.src = "https://www.youtube.com/embed/Od2C7Gkwqeo?enablejsapi=1&autoplay=1&loop=1&playlist=Od2C7Gkwqeo"; // إعادة تشغيل
-                musicBtn.innerHTML = '🎵';
+                player.playVideo();
+                musicIcon.innerHTML = '🎵';
+                musicText.innerHTML = 'إيقاف الأغنية';
                 isPlaying = true;
             }
         }
