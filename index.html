@@ -65,10 +65,12 @@
         .side-couple {
             position: fixed;
             top: 50%;
-            width: 120px; /* حجم الصورة */
-            opacity: 0.20; /* شفافية أنيقة لعدم إزعاج القراءة */
+            width: 130px; /* حجم الصورة */
+            opacity: 0.15; /* شفافية أنيقة لعدم إزعاج القراءة */
             pointer-events: none;
             z-index: 1;
+            /* هذا الفلتر يحول الصورة السوداء إلى اللون الذهبي الملكي */
+            filter: invert(71%) sepia(39%) saturate(594%) hue-rotate(4deg) brightness(97%) contrast(93%);
         }
         .couple-left { 
             left: 20px; 
@@ -232,7 +234,7 @@
 
         /* تعديلات الشاشات الصغيرة للموبايل */
         @media (max-width: 600px) {
-            .side-couple { width: 70px; opacity: 0.15; }
+            .side-couple { width: 80px; opacity: 0.12; }
             .corner-decoration { width: 40px; height: 40px; }
         }
     </style>
@@ -245,14 +247,14 @@
     <div class="corner-decoration bottom-left"></div>
     <div class="corner-decoration bottom-right"></div>
 
-    <!-- إضافة صورة حقيقية لعريس وعروسة باللون الذهبي يمين ويسار الشاشة -->
-    <img class="side-couple couple-left" src="https://img.icons8.com/ios-filled/200/d4af37/wedding-couple.png" alt="عريس وعروسة">
-    <img class="side-couple couple-right" src="https://img.icons8.com/ios-filled/200/d4af37/wedding-couple.png" alt="عريس وعروسة">
+    <!-- صورة عريس وعروسة برابط ثابت مع كود onerror لمنع ظهور أي خطأ -->
+    <img class="side-couple couple-left" src="https://img.icons8.com/ios-filled/256/wedding-couple.png" alt="عريس وعروسة" onerror="this.style.display='none'">
+    <img class="side-couple couple-right" src="https://img.icons8.com/ios-filled/256/wedding-couple.png" alt="عريس وعروسة" onerror="this.style.display='none'">
 
     <!-- حاوية الذرات الذهبية المتطايرة -->
     <div id="particles-container"></div>
 
-    <!-- ملف الصوت من مستودعك -->
+    <!-- ملف الصوت -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="wedding.mp3" type="audio/mpeg">
     </audio>
