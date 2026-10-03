@@ -12,15 +12,69 @@
             padding: 0;
         }
         body {
-            /* خلفية خضراء زمردية غامقة وفخمة */
-            background: #062b1d;
+            background: #062b1d; /* أخضر زمردي ملكي */
             font-family: 'Cairo', sans-serif;
             color: #f0f2f5;
             text-align: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* --- تأثير ذرات الذهب المتطايرة --- */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: #d4af37;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatUp 15s infinite linear;
+            box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* --- ديكورات الزوايا الذهبية الثابتة --- */
+        .corner-decoration {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            z-index: 999;
+            pointer-events: none;
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            opacity: 0.8;
+        }
+        .top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; border-top-left-radius: 20px; }
+        .top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; border-top-right-radius: 20px; }
+        .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
+        .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
+
+        /* --- العريس والعروسة على جانبي الدعوة --- */
+        .side-couple {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            opacity: 0.15; /* شفافية أنيقة لعدم إزعاج القراءة */
+            pointer-events: none;
+            z-index: 1;
+        }
+        .couple-left { left: 20px; }
+        .couple-right { right: 20px; }
+
+        /* شاشة البداية والظرف */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -40,12 +94,18 @@
         .instruction-title {
             font-family: 'Amiri', serif;
             font-size: 1.6rem;
-            color: #d4af37; /* ذهبي */
+            color: #d4af37;
             margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(212,175,55,0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
         }
         .instruction-sub {
             font-size: 0.95rem;
-            color: #a3b8ad; /* أخضر فاتح رمادي للتفاصيل */
+            color: #a3b8ad;
             margin-bottom: 25px;
         }
 
@@ -62,7 +122,9 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
+        .envelope-container:hover { transform: scale(1.02); }
 
         .flap-top {
             position: absolute;
@@ -77,53 +139,25 @@
             transition: transform 0.8s ease, opacity 0.5s ease;
             z-index: 4;
         }
-
-        .flap-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 220px;
-            height: 100%;
-            background: #073826;
-            clip-path: polygon(0 0, 100% 50%, 0 100%);
-            z-index: 2;
-        }
-        .flap-right {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 220px;
-            height: 100%;
-            background: #073826;
-            clip-path: polygon(100% 0, 0 50%, 100% 100%);
-            z-index: 2;
-        }
-        .flap-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 140px;
-            background: #0b452f;
-            clip-path: polygon(0 100%, 50% 0, 100% 100%);
-            z-index: 2;
-        }
+        .flap-left { position: absolute; top: 0; left: 0; width: 220px; height: 100%; background: #073826; clip-path: polygon(0 0, 100% 50%, 0 100%); z-index: 2; }
+        .flap-right { position: absolute; top: 0; right: 0; width: 220px; height: 100%; background: #073826; clip-path: polygon(100% 0, 0 50%, 100% 100%); z-index: 2; }
+        .flap-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 140px; background: #0b452f; clip-path: polygon(0 100%, 50% 0, 100% 100%); z-index: 2; }
 
         .envelope-seal {
             position: absolute;
             z-index: 5;
-            width: 65px;
-            height: 65px;
+            width: 75px;
+            height: 75px;
             background: #d4af37;
             color: #062b1d;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Amiri', serif;
-            font-size: 1.1rem;
+            font-family: 'Cinzel', serif; /* الخط الإنجليزي الفخم */
+            font-size: 1.3rem;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.6);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.8);
             border: 2px solid #ffffff;
             transition: transform 0.5s ease, opacity 0.4s ease;
         }
@@ -142,28 +176,21 @@
             transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
         }
 
-        .envelope-container.open .flap-top {
-            transform: rotateX(180deg);
-            opacity: 0;
-        }
-        .envelope-container.open .envelope-seal {
-            transform: scale(0);
-            opacity: 0;
-        }
-        .envelope-container.open .envelope-paper {
-            transform: translateY(0);
-            opacity: 1;
-            z-index: 6;
-        }
+        .envelope-container.open .flap-top { transform: rotateX(180deg); opacity: 0; }
+        .envelope-container.open .envelope-seal { transform: scale(0); opacity: 0; }
+        .envelope-container.open .envelope-paper { transform: translateY(0); opacity: 1; z-index: 6; }
 
         .main-content {
             display: none;
             max-width: 650px;
             margin: 0 auto;
             padding: 30px 15px;
+            position: relative;
+            z-index: 2;
         }
         section {
-            background: #093b28;
+            background: rgba(9, 59, 40, 0.85); /* شفافية بسيطة لإظهار الخلفية المتطايرة */
+            backdrop-filter: blur(5px);
             margin: 30px 0;
             padding: 40px 25px;
             border-radius: 20px;
@@ -174,153 +201,88 @@
             transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        section.visible { opacity: 1; transform: translateY(0); }
         section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: #d4af37;
-            border-radius: 2px;
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37; border-radius: 2px;
         }
         
-        .names-en {
-            font-family: 'Cinzel', serif;
-            color: #d4af37;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 5px;
-        }
-
-        .basmala {
-            font-family: 'Amiri', serif;
-            font-size: 1.5rem;
-            color: #d4af37;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        .quran-verse {
-            font-family: 'Amiri', serif;
-            font-size: 1.35rem;
-            color: #d4af37;
-            line-height: 2.2;
-            margin-bottom: 20px;
-            padding: 0 10px;
-        }
-        .names {
-            font-family: 'Amiri', serif;
-            font-size: 2.6rem;
-            color: #ffffff;
-            margin: 15px 0;
-            font-weight: 700;
-        }
-        .section-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: #d4af37;
-            margin-bottom: 8px;
-        }
-        p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #d1dfd7;
-            margin: 8px 0;
-        }
-        .sub-en {
-            font-size: 0.9rem;
-            color: #a3b8ad;
-            margin-bottom: 15px;
-        }
-        .details-box {
-            background: #062b1d;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 15px;
-            border: 1px solid rgba(212,175,55,0.3);
-        }
-        .map-btn {
-            display: inline-block;
-            margin-top: 20px;
-            background: #d4af37;
-            color: #062b1d;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
-            transition: 0.3s;
-        }
-        .map-btn:hover {
-            background: #e6c553;
-        }
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .countdown-box {
-            background: #062b1d;
-            padding: 12px 8px;
-            border-radius: 12px;
-            min-width: 70px;
-            border: 1px solid #d4af37;
-        }
-        .countdown-box span {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #d4af37;
-        }
-        .countdown-box small {
-            font-size: 0.75rem;
-            color: #a3b8ad;
-        }
+        .names-en { font-family: 'Cinzel', serif; color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; }
+        .basmala { font-family: 'Amiri', serif; font-size: 1.5rem; color: #d4af37; margin-bottom: 15px; font-weight: bold; }
+        .quran-verse { font-family: 'Amiri', serif; font-size: 1.35rem; color: #d4af37; line-height: 2.2; margin-bottom: 20px; padding: 0 10px; }
+        .names { font-family: 'Amiri', serif; font-size: 2.6rem; color: #ffffff; margin: 15px 0; font-weight: 700; }
+        .section-title { font-family: 'Amiri', serif; font-size: 1.8rem; color: #d4af37; margin-bottom: 8px; }
+        p { font-size: 1.05rem; line-height: 1.8; color: #d1dfd7; margin: 8px 0; }
+        .sub-en { font-size: 0.9rem; color: #a3b8ad; margin-bottom: 15px; }
+        .details-box { background: #062b1d; padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(212,175,55,0.3); }
+        .map-btn { display: inline-block; margin-top: 20px; background: #d4af37; color: #062b1d; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; }
+        .map-btn:hover { background: #e6c553; transform: translateY(-3px); }
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .countdown-box { background: #062b1d; padding: 12px 8px; border-radius: 12px; min-width: 70px; border: 1px solid #d4af37; }
+        .countdown-box span { display: block; font-size: 1.5rem; font-weight: 700; color: #d4af37; }
+        .countdown-box small { font-size: 0.75rem; color: #a3b8ad; }
 
         #music-control {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #d4af37;
-            color: #062b1d;
-            border: 2px solid #fff;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            display: none;
-            align-items: center;
-            gap: 8px;
+            position: fixed; bottom: 20px; left: 20px; background: #d4af37; color: #062b1d; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.6); display: none; align-items: center; gap: 8px;
+        }
+
+        /* تعديلات الشاشات الصغيرة للموبايل */
+        @media (max-width: 600px) {
+            .side-couple { width: 50px; opacity: 0.1; }
+            .corner-decoration { width: 40px; height: 40px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- الديكورات الثابتة في الزوايا -->
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+    <!-- رسمة العريس والعروسة الكلاسيكية يمين ويسار الشاشة -->
+    <svg class="side-couple couple-left" viewBox="0 0 100 100">
+        <!-- Groom Line Art -->
+        <circle cx="35" cy="25" r="8" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 20 90 C 20 50, 50 50, 50 90" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <!-- Bride Line Art -->
+        <circle cx="65" cy="30" r="7" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 65 45 L 45 90 L 85 90 Z" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 50 20 C 50 20, 45 10, 55 15 C 60 20, 50 30, 50 30 C 50 30, 40 20, 45 15 C 55 10, 50 20, 50 20 Z" fill="#d4af37"/>
+    </svg>
+    <svg class="side-couple couple-right" viewBox="0 0 100 100">
+        <circle cx="35" cy="25" r="8" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 20 90 C 20 50, 50 50, 50 90" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <circle cx="65" cy="30" r="7" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 65 45 L 45 90 L 85 90 Z" stroke="#d4af37" stroke-width="2" fill="none"/>
+        <path d="M 50 20 C 50 20, 45 10, 55 15 C 60 20, 50 30, 50 30 C 50 30, 40 20, 45 15 C 55 10, 50 20, 50 20 Z" fill="#d4af37"/>
+    </svg>
+
+    <!-- حاوية الذرات الذهبية المتطايرة -->
+    <div id="particles-container"></div>
+
+    <!-- ملف الصوت من مستودعك (بدون يوتيوب لضمان السرعة) -->
+    <audio id="wedding-audio" loop preload="auto">
+        <source src="wedding.mp3" type="audio/mpeg">
+    </audio>
+
     <button id="music-control" onclick="toggleMusic()">
         <span id="music-icon">🎵</span> <span id="music-text">تشغيل الأغنية</span>
     </button>
 
-    <div id="welcome-screen">
+    <!-- الظرف والشاشة الافتتاحية (تعمل كزر واحد لتشغيل الصوت والدعوة) -->
+    <div id="welcome-screen" onclick="openInvitation()">
         <div class="instruction-title">إضغط لفتح الدعوة</div>
         <div class="instruction-sub">Tap to open</div>
 
-        <div class="envelope-container" id="envContainer" onclick="openInvitation()">
+        <div class="envelope-container" id="envContainer">
             <div class="flap-top"></div>
             <div class="flap-bottom"></div>
             <div class="flap-left"></div>
             <div class="flap-right"></div>
 
-            <div class="envelope-seal">أ ♥ م</div>
+            <!-- تم التعديل إلى A ♥ M كابيتال إنجليزي -->
+            <div class="envelope-seal">A ♥ M</div>
 
             <div class="envelope-paper">
                 <div style="font-family: 'Amiri', serif; color: #d4af37; font-size: 1.35rem;">أحمد & منار</div>
@@ -397,31 +359,36 @@
 
     </div>
 
-    <!-- مشغل يوتيوب مخفي تماماً -->
-    <div id="player-container" style="display:none;"></div>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        let player;
+        const audio = document.getElementById('wedding-audio');
         const musicBtn = document.getElementById('music-control');
         const musicIcon = document.getElementById('music-icon');
         const musicText = document.getElementById('music-text');
         let isPlaying = false;
+        let isOpened = false;
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player-container', {
-                height: '0',
-                width: '0',
-                videoId: 'Od2C7Gkwqeo',
-                playerVars: {
-                    'autoplay': 0,
-                    'loop': 1,
-                    'playlist': 'Od2C7Gkwqeo'
-                }
-            });
+        // دالة توليد تأثير ذرات الذهب في الخلفية
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                let particle = document.createElement('div');
+                particle.classList.add('particle');
+                let size = Math.random() * 6 + 2; // حجم بين 2 و 8 بكسل
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // سرعات مختلفة
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(particle);
+            }
         }
+        createParticles();
 
         function openInvitation() {
+            if (isOpened) return; // منع التكرار
+            isOpened = true;
+            
             const envContainer = document.getElementById('envContainer');
             const welcome = document.getElementById('welcome-screen');
             const content = document.getElementById('invitationContent');
@@ -429,12 +396,14 @@
             envContainer.classList.add('open');
             musicBtn.style.display = 'flex';
 
-            if (player && player.playVideo) {
-                player.playVideo();
+            // تشغيل الصوت التلقائي فوراً بمجرد الضغط (مضمونة 100%)
+            audio.play().then(() => {
                 isPlaying = true;
                 musicIcon.innerHTML = '🎵';
                 musicText.innerHTML = 'إيقاف الأغنية';
-            }
+            }).catch(e => {
+                console.log("الرجاء التأكد من وجود ملف wedding.mp3", e);
+            });
 
             setTimeout(() => {
                 welcome.style.opacity = '0';
@@ -448,14 +417,13 @@
         }
 
         function toggleMusic() {
-            if (!player) return;
             if (isPlaying) {
-                player.pauseVideo();
+                audio.pause();
                 musicIcon.innerHTML = '🔇';
                 musicText.innerHTML = 'تشغيل الأغنية';
                 isPlaying = false;
             } else {
-                player.playVideo();
+                audio.play();
                 musicIcon.innerHTML = '🎵';
                 musicText.innerHTML = 'إيقاف الأغنية';
                 isPlaying = true;
