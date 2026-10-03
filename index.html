@@ -61,18 +61,23 @@
         .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
         .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
 
-        /* --- العريس والعروسة على جانبي الدعوة --- */
+        /* --- صورة العريس والعروسة على جانبي الدعوة --- */
         .side-couple {
             position: fixed;
             top: 50%;
-            transform: translateY(-50%);
-            width: 80px;
-            opacity: 0.15; /* شفافية أنيقة لعدم إزعاج القراءة */
+            width: 120px; /* حجم الصورة */
+            opacity: 0.20; /* شفافية أنيقة لعدم إزعاج القراءة */
             pointer-events: none;
             z-index: 1;
         }
-        .couple-left { left: 20px; }
-        .couple-right { right: 20px; }
+        .couple-left { 
+            left: 20px; 
+            transform: translateY(-50%); 
+        }
+        .couple-right { 
+            right: 20px; 
+            transform: translateY(-50%) scaleX(-1); /* لعكس اتجاه الصورة لتكون متناسقة */
+        }
 
         /* شاشة البداية والظرف */
         #welcome-screen {
@@ -154,7 +159,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cinzel', serif; /* الخط الإنجليزي الفخم */
+            font-family: 'Cinzel', serif;
             font-size: 1.3rem;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(212,175,55,0.8);
@@ -189,7 +194,7 @@
             z-index: 2;
         }
         section {
-            background: rgba(9, 59, 40, 0.85); /* شفافية بسيطة لإظهار الخلفية المتطايرة */
+            background: rgba(9, 59, 40, 0.85);
             backdrop-filter: blur(5px);
             margin: 30px 0;
             padding: 40px 25px;
@@ -227,7 +232,7 @@
 
         /* تعديلات الشاشات الصغيرة للموبايل */
         @media (max-width: 600px) {
-            .side-couple { width: 50px; opacity: 0.1; }
+            .side-couple { width: 70px; opacity: 0.15; }
             .corner-decoration { width: 40px; height: 40px; }
         }
     </style>
@@ -240,28 +245,14 @@
     <div class="corner-decoration bottom-left"></div>
     <div class="corner-decoration bottom-right"></div>
 
-    <!-- رسمة العريس والعروسة الكلاسيكية يمين ويسار الشاشة -->
-    <svg class="side-couple couple-left" viewBox="0 0 100 100">
-        <!-- Groom Line Art -->
-        <circle cx="35" cy="25" r="8" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 20 90 C 20 50, 50 50, 50 90" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <!-- Bride Line Art -->
-        <circle cx="65" cy="30" r="7" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 65 45 L 45 90 L 85 90 Z" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 50 20 C 50 20, 45 10, 55 15 C 60 20, 50 30, 50 30 C 50 30, 40 20, 45 15 C 55 10, 50 20, 50 20 Z" fill="#d4af37"/>
-    </svg>
-    <svg class="side-couple couple-right" viewBox="0 0 100 100">
-        <circle cx="35" cy="25" r="8" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 20 90 C 20 50, 50 50, 50 90" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <circle cx="65" cy="30" r="7" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 65 45 L 45 90 L 85 90 Z" stroke="#d4af37" stroke-width="2" fill="none"/>
-        <path d="M 50 20 C 50 20, 45 10, 55 15 C 60 20, 50 30, 50 30 C 50 30, 40 20, 45 15 C 55 10, 50 20, 50 20 Z" fill="#d4af37"/>
-    </svg>
+    <!-- إضافة صورة حقيقية لعريس وعروسة باللون الذهبي يمين ويسار الشاشة -->
+    <img class="side-couple couple-left" src="https://img.icons8.com/ios-filled/200/d4af37/wedding-couple.png" alt="عريس وعروسة">
+    <img class="side-couple couple-right" src="https://img.icons8.com/ios-filled/200/d4af37/wedding-couple.png" alt="عريس وعروسة">
 
     <!-- حاوية الذرات الذهبية المتطايرة -->
     <div id="particles-container"></div>
 
-    <!-- ملف الصوت من مستودعك (بدون يوتيوب لضمان السرعة) -->
+    <!-- ملف الصوت من مستودعك -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="wedding.mp3" type="audio/mpeg">
     </audio>
@@ -270,7 +261,7 @@
         <span id="music-icon">🎵</span> <span id="music-text">تشغيل الأغنية</span>
     </button>
 
-    <!-- الظرف والشاشة الافتتاحية (تعمل كزر واحد لتشغيل الصوت والدعوة) -->
+    <!-- الظرف والشاشة الافتتاحية -->
     <div id="welcome-screen" onclick="openInvitation()">
         <div class="instruction-title">إضغط لفتح الدعوة</div>
         <div class="instruction-sub">Tap to open</div>
@@ -281,7 +272,6 @@
             <div class="flap-left"></div>
             <div class="flap-right"></div>
 
-            <!-- تم التعديل إلى A ♥ M كابيتال إنجليزي -->
             <div class="envelope-seal">A ♥ M</div>
 
             <div class="envelope-paper">
@@ -367,18 +357,17 @@
         let isPlaying = false;
         let isOpened = false;
 
-        // دالة توليد تأثير ذرات الذهب في الخلفية
         function createParticles() {
             const container = document.getElementById('particles-container');
             const particleCount = 20;
             for (let i = 0; i < particleCount; i++) {
                 let particle = document.createElement('div');
                 particle.classList.add('particle');
-                let size = Math.random() * 6 + 2; // حجم بين 2 و 8 بكسل
+                let size = Math.random() * 6 + 2; 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // سرعات مختلفة
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; 
                 particle.style.animationDelay = `${Math.random() * 5}s`;
                 container.appendChild(particle);
             }
@@ -386,7 +375,7 @@
         createParticles();
 
         function openInvitation() {
-            if (isOpened) return; // منع التكرار
+            if (isOpened) return;
             isOpened = true;
             
             const envContainer = document.getElementById('envContainer');
@@ -396,7 +385,6 @@
             envContainer.classList.add('open');
             musicBtn.style.display = 'flex';
 
-            // تشغيل الصوت التلقائي فوراً بمجرد الضغط (مضمونة 100%)
             audio.play().then(() => {
                 isPlaying = true;
                 musicIcon.innerHTML = '🎵';
