@@ -61,16 +61,15 @@
         .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
         .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
 
-        /* --- صورة العريس والعروسة على جانبي الدعوة --- */
+        /* --- صورة العريس والعروسة مدمجة داخلياً --- */
         .side-couple {
             position: fixed;
             top: 50%;
-            width: 130px; /* حجم الصورة */
-            opacity: 0.15; /* شفافية أنيقة لعدم إزعاج القراءة */
+            width: 110px; /* حجم الرسمة */
+            height: auto;
+            opacity: 0.18; /* شفافية أنيقة */
             pointer-events: none;
             z-index: 1;
-            /* هذا الفلتر يحول الصورة السوداء إلى اللون الذهبي الملكي */
-            filter: invert(71%) sepia(39%) saturate(594%) hue-rotate(4deg) brightness(97%) contrast(93%);
         }
         .couple-left { 
             left: 20px; 
@@ -78,7 +77,7 @@
         }
         .couple-right { 
             right: 20px; 
-            transform: translateY(-50%) scaleX(-1); /* لعكس اتجاه الصورة لتكون متناسقة */
+            transform: translateY(-50%) scaleX(-1);
         }
 
         /* شاشة البداية والظرف */
@@ -234,7 +233,7 @@
 
         /* تعديلات الشاشات الصغيرة للموبايل */
         @media (max-width: 600px) {
-            .side-couple { width: 80px; opacity: 0.12; }
+            .side-couple { width: 75px; opacity: 0.15; }
             .corner-decoration { width: 40px; height: 40px; }
         }
     </style>
@@ -247,9 +246,13 @@
     <div class="corner-decoration bottom-left"></div>
     <div class="corner-decoration bottom-right"></div>
 
-    <!-- صورة عريس وعروسة برابط ثابت مع كود onerror لمنع ظهور أي خطأ -->
-    <img class="side-couple couple-left" src="https://img.icons8.com/ios-filled/256/wedding-couple.png" alt="عريس وعروسة" onerror="this.style.display='none'">
-    <img class="side-couple couple-right" src="https://img.icons8.com/ios-filled/256/wedding-couple.png" alt="عريس وعروسة" onerror="this.style.display='none'">
+    <!-- كود صورة العريس والعروسة المدمج (بدون روابط خارجية) -->
+    <svg class="side-couple couple-left" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#d4af37" d="M192 128c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64zM160 256v256h-48V384H80v128H32V219.7c-9.5-6.5-17.7-14.7-24-24.1L-19.7 84.1c-9-13.5-5.4-31.9 8.1-40.9s31.9-5.4 40.9 8.1L63.7 103c15 22.4 40.2 36 67.2 37.3V192c0 24.3 13.3 45.6 32.7 56zM384 128c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64zm80 123.3c0 14.8-5.3 28.9-14.9 40l-29.1 33.7V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V325l-29.1-33.7c-9.6-11.1-14.9-25.2-14.9-40v-40.5c0-11-9-20-20-20h-12c-5.9 0-11.4 2.1-15.8 5.7l-24.2 19.3V256c38.7-8.3 68.6-38.3 76.6-77.3l27.1 11.2c19.3 8 40.3 8 59.6 0l27.1-11.2c7.8 38.3 36.9 67.8 74.8 76.6v131.7c0 8.8-7.2 16-16 16s-16-7.2-16-16v-131.7z"/>
+    </svg>
+    <svg class="side-couple couple-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#d4af37" d="M192 128c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64zM160 256v256h-48V384H80v128H32V219.7c-9.5-6.5-17.7-14.7-24-24.1L-19.7 84.1c-9-13.5-5.4-31.9 8.1-40.9s31.9-5.4 40.9 8.1L63.7 103c15 22.4 40.2 36 67.2 37.3V192c0 24.3 13.3 45.6 32.7 56zM384 128c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64zm80 123.3c0 14.8-5.3 28.9-14.9 40l-29.1 33.7V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V325l-29.1-33.7c-9.6-11.1-14.9-25.2-14.9-40v-40.5c0-11-9-20-20-20h-12c-5.9 0-11.4 2.1-15.8 5.7l-24.2 19.3V256c38.7-8.3 68.6-38.3 76.6-77.3l27.1 11.2c19.3 8 40.3 8 59.6 0l27.1-11.2c7.8 38.3 36.9 67.8 74.8 76.6v131.7c0 8.8-7.2 16-16 16s-16-7.2-16-16v-131.7z"/>
+    </svg>
 
     <!-- حاوية الذرات الذهبية المتطايرة -->
     <div id="particles-container"></div>
@@ -326,127 +329,116 @@
                 <p>🕒 <strong>الساعة ٣:٠٠ عصراً</strong></p>
                 <p class="sub-en">3:00 PM</p>
             </div>
+        </section>
 
-            <h3 class="section-title" style="margin-top: 30px;">مكان الحفل</h3>
+        <section class="scroll-reveal">
+            <h3 class="section-title">مكان الحفل</h3>
             <div class="sub-en">Wedding Venue</div>
             <div class="details-box">
-                <p>📍 <strong>قاعة عُبار</strong></p>
+                <p>📍 <strong>قاعة غبار</strong></p>
                 <p class="sub-en">Obar Hall</p>
                 <p>منيا القمح - الشرقية، مصر</p>
                 <p class="sub-en">Minya Al Qamh - Sharqia, Egypt</p>
             </div>
-            <a href="https://maps.google.com/?q=قاعة+عُبار+منيا+القمح" target="_blank" class="map-btn">
-                اضغط للوصول للمكان 🗺 Get Directions
-            </a>
+            <a href="https://maps.google.com/?q=Obar+Hall" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
         </section>
 
-        <section class="scroll-reveal">
-            <h3 class="section-title">شكراً لحضوركم</h3>
+        <section class="scroll-reveal" style="margin-bottom: 50px;">
+            <h3 class="section-title" style="font-size: 2.2rem;">شكراً لحضوركم</h3>
             <div class="sub-en">Thank you for attending</div>
             <p>نسأل الله أن يبارك في هذا الزواج، وأن يرزقنا السعادة والمودة والرحمة، وأن يجعل أيامكم كلها أفراحاً.</p>
             <p class="sub-en">We ask Allah to bless this marriage, grant us happiness, affection, and mercy, and make all your days joyful.</p>
-            <div class="names" style="font-size: 1.8rem; margin-top: 15px;">أحمد & منار</div>
-            <div class="names-en" style="font-size: 1.1rem;">AHMED ♥ MANAR</div>
+            <div class="names" style="font-size: 2rem;">أحمد & منار</div>
+            <div class="names-en">AHMED ♥ MANAR</div>
         </section>
 
     </div>
 
     <script>
-        const audio = document.getElementById('wedding-audio');
-        const musicBtn = document.getElementById('music-control');
-        const musicIcon = document.getElementById('music-icon');
-        const musicText = document.getElementById('music-text');
-        let isPlaying = false;
-        let isOpened = false;
-
         function createParticles() {
             const container = document.getElementById('particles-container');
-            const particleCount = 20;
+            const particleCount = 40;
             for (let i = 0; i < particleCount; i++) {
                 let particle = document.createElement('div');
-                particle.classList.add('particle');
-                let size = Math.random() * 6 + 2; 
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; 
-                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.className = 'particle';
+                let size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
                 container.appendChild(particle);
             }
         }
-        createParticles();
 
-        function openInvitation() {
-            if (isOpened) return;
-            isOpened = true;
-            
-            const envContainer = document.getElementById('envContainer');
-            const welcome = document.getElementById('welcome-screen');
-            const content = document.getElementById('invitationContent');
-            
-            envContainer.classList.add('open');
-            musicBtn.style.display = 'flex';
-
-            audio.play().then(() => {
-                isPlaying = true;
-                musicIcon.innerHTML = '🎵';
-                musicText.innerHTML = 'إيقاف الأغنية';
-            }).catch(e => {
-                console.log("الرجاء التأكد من وجود ملف wedding.mp3", e);
-            });
-
-            setTimeout(() => {
-                welcome.style.opacity = '0';
-                welcome.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    welcome.style.display = 'none';
-                    content.style.display = 'block';
-                    checkScroll();
-                }, 800);
-            }, 1100);
-        }
+        const audio = document.getElementById("wedding-audio");
+        const musicBtn = document.getElementById("music-control");
+        const musicText = document.getElementById("music-text");
+        const musicIcon = document.getElementById("music-icon");
+        let isMusicPlaying = false;
 
         function toggleMusic() {
-            if (isPlaying) {
+            if (isMusicPlaying) {
                 audio.pause();
-                musicIcon.innerHTML = '🔇';
-                musicText.innerHTML = 'تشغيل الأغنية';
-                isPlaying = false;
+                musicText.innerText = "تشغيل الأغنية";
+                musicIcon.innerText = "🎵";
             } else {
-                audio.play();
-                musicIcon.innerHTML = '🎵';
-                musicText.innerHTML = 'إيقاف الأغنية';
-                isPlaying = true;
+                audio.play().catch(e => console.log("Audio play blocked by browser"));
+                musicText.innerText = "إيقاف الأغنية";
+                musicIcon.innerText = "⏸️";
             }
+            isMusicPlaying = !isMusicPlaying;
         }
 
-        function checkScroll() {
-            const sections = document.querySelectorAll('.scroll-reveal');
-            const triggerBottom = window.innerHeight * 0.85;
+        function openInvitation() {
+            const env = document.getElementById('envContainer');
+            env.classList.add('open');
+            
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('welcome-screen').style.display = 'none';
+                    const mainContent = document.getElementById('invitationContent');
+                    mainContent.style.display = 'block';
+                    musicBtn.style.display = 'flex';
+                    createParticles();
+                    
+                    audio.play().then(() => {
+                        isMusicPlaying = true;
+                        musicText.innerText = "إيقاف الأغنية";
+                        musicIcon.innerText = "⏸️";
+                    }).catch(error => {
+                        console.log("Auto-play prevented");
+                        isMusicPlaying = false;
+                    });
 
-            sections.forEach(sec => {
-                const secTop = sec.getBoundingClientRect().top;
-                if (secTop < triggerBottom) {
-                    sec.classList.add('visible');
-                }
-            });
+                    setTimeout(() => {
+                        const sections = document.querySelectorAll('.scroll-reveal');
+                        sections.forEach(sec => sec.classList.add('visible'));
+                    }, 100);
+
+                }, 1000);
+            }, 800);
         }
 
-        window.addEventListener('scroll', checkScroll);
-
-        const weddingDate = new Date("November 25, 2026 15:00:00").getTime();
+        const weddingDate = new Date("Nov 25, 2026 15:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-            if (distance < 0) { clearInterval(timer); return; }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+                return;
+            }
+
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
     </script>
 </body>
