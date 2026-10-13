@@ -60,7 +60,7 @@
         .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
         .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
 
-        /* --- إطار العريس والعروسة --- */
+        /* --- إطار بوكيه الورد --- */
         .couple-frame-container {
             width: 210px;
             height: 210px;
@@ -208,7 +208,7 @@
             z-index: 2;
         }
         section {
-            background: #ffffff; /* بطاقات بيضاء نقية مع خلفية بيج عامة */
+            background: #ffffff;
             backdrop-filter: blur(5px);
             margin: 30px 0;
             padding: 40px 25px;
@@ -292,10 +292,10 @@
     <div class="main-content" id="invitationContent">
         
         <section class="scroll-reveal">
-            <!-- الإطار المزخرف الفخم للصورة -->
+            <!-- إطار بوكيه الورد الجذاب -->
             <div class="couple-frame-container">
                 <div class="couple-ornament-border"></div>
-                <img class="couple-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="عريس وعروسة">
+                <img class="couple-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=400&auto=format&fit=crop" alt="بوكيه ورد زفاف">
             </div>
 
             <div class="basmala">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
@@ -347,7 +347,6 @@
                 <p>📍 <strong>قاعة رومانيكا جولدن جروب</strong></p>
                 <p class="sub-en">Romanica Golden Group Hall</p>
             </div>
-            <!-- رابط الخريطة الجديد بالإحداثيات المطلوبة -->
             <a href="https://maps.google.com/?q=30.019161%2C31.320984" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
         </section>
 
@@ -429,7 +428,6 @@
             }, 800);
         }
 
-        // تحديث تاريخ الزفاف إلى 1 ديسمبر 2026 الساعة 6 مساءً
         const weddingDate = new Date("Dec 1, 2026 18:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
