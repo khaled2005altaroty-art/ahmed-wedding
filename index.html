@@ -17,37 +17,77 @@
             position: relative;
         }
 
-        #particles-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
+        /* شاشة الظرف المغلق (الجواب القديم) */
+        #envelope-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fbf8f2; display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.8s ease;
         }
-        .particle {
-            position: absolute; background: #c5a059; border-radius: 50%; opacity: 0.35; animation: floatUp 15s infinite linear;
+        .envelope-box {
+            background: #ffffff; padding: 50px 35px; border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 2px solid #c5a059;
+            max-width: 440px; width: 90%; cursor: pointer;
+            animation: pulseGlow 2s infinite; position: relative;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.5; } 80% { opacity: 0.5; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+        .envelope-box h2 { font-family: 'Amiri', serif; font-size: 1.8rem; color: #8c6d33; margin-bottom: 5px; }
+        .env-names { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #c5a059; margin-bottom: 15px; letter-spacing: 2px; }
+        .envelope-box p { color: #666; font-size: 1rem; margin-bottom: 20px; }
+        .open-btn {
+            background: #c5a059; color: #fff; border: none; padding: 12px 32px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(197,160,89,0.3); transition: transform 0.2s;
+        }
+        .open-btn:hover { transform: scale(1.05); }
+
+        /* تأثير خروج الورقة من الظرف */
+        .sliding-paper {
+            position: absolute; width: 85%; max-width: 360px; background: #fff;
+            padding: 25px; border-radius: 10px; border: 1px solid #c5a059;
+            top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+            opacity: 0; transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 10000; pointer-events: none;
+        }
+        .sliding-paper.slide-out {
+            transform: translate(-50%, -180%) scale(1); opacity: 1;
         }
 
-        .corner-decoration {
-            position: fixed; width: 60px; height: 60px; z-index: 999; pointer-events: none; border: 2px solid rgba(197, 160, 89, 0.7); opacity: 0.8;
-        }
-        .top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; border-top-left-radius: 20px; }
-        .top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; border-top-right-radius: 20px; }
-        .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
-        .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
-
+        /* المحتوى الرئيسي للدعوة */
         .main-content {
-            max-width: 650px; margin: 0 auto; padding: 30px 15px; position: relative; z-index: 2;
+            max-width: 650px; margin: 0 auto; padding: 40px 15px; position: relative; z-index: 2;
+            display: none; opacity: 0; transition: opacity 1s ease;
         }
+        .main-content.show { display: block; opacity: 1; }
+
         section {
-            background: #ffffff; margin: 30px 0; padding: 40px 25px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid rgba(197, 160, 89, 0.25); position: relative;
+            background: #ffffff; margin: 40px 0; padding: 45px 25px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative; opacity: 0; transform: translateY(40px);
+            transition: all 0.8s ease-out;
         }
-        section::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #c5a059; border-radius: 2px;
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        /* خطوط منمقة وفاخرة بين الأقسام */
+        .ornament-divider {
+            display: flex; align-items: center; justify-content: center; margin: 25px 0; color: #c5a059;
         }
-        
+        .ornament-divider::before, .ornament-divider::after {
+            content: ""; height: 1px; width: 100px; background: linear-gradient(90deg, transparent, #c5a059, transparent); margin: 0 15px;
+        }
+
+        /* تصميم بوكيه الورد الفخم */
+        .bouquet-container {
+            width: 100px; height: 100px; margin: 0 auto 20px auto;
+            background: linear-gradient(135deg, #fbf8f2, #f5ecd7);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            border: 2px solid #c5a059; box-shadow: 0 5px 15px rgba(197,160,89,0.2);
+            font-size: 3rem;
+        }
+
         .names-en { font-family: 'Cinzel', serif; color: #8c6d33; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; }
         .basmala { font-family: 'Amiri', serif; font-size: 1.5rem; color: #8c6d33; margin-bottom: 15px; font-weight: bold; }
         .quran-verse { font-family: 'Amiri', serif; font-size: 1.35rem; color: #1a1a1a; line-height: 2.2; margin-bottom: 20px; padding: 0 10px; }
@@ -64,54 +104,68 @@
         .countdown-box small { font-size: 0.75rem; color: #555555; }
 
         #music-control {
-            position: fixed; bottom: 20px; left: 20px; background: #c5a059; color: #ffffff; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px;
+            position: fixed; bottom: 20px; left: 20px; background: #c5a059; color: #ffffff; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; align-items: center; gap: 8px;
         }
-
-        @media (max-width: 600px) { .corner-decoration { width: 40px; height: 40px; } }
     </style>
 </head>
 <body>
 
-    <div class="corner-decoration top-left"></div>
-    <div class="corner-decoration top-right"></div>
-    <div class="corner-decoration bottom-left"></div>
-    <div class="corner-decoration bottom-right"></div>
+    <!-- شاشة الظرف مع الورقة المنزلقة -->
+    <div id="envelope-screen">
+        <div class="envelope-box" onclick="openInvitation()">
+            <div style="font-size: 3.2rem; margin-bottom: 10px;">💌</div>
+            <h2>دعوة زفاف</h2>
+            <div class="env-names">AHMED <span style="color:#d9534f;">♥</span> MANAR</div>
+            <p>انقر لفتح الجواب</p>
+            <button class="open-btn">فتح الدعوة ✨</button>
+            
+            <!-- ورقة الجواب الخارجة -->
+            <div class="sliding-paper" id="slidingPaper">
+                <div style="font-size: 2rem; margin-bottom: 5px;">💐</div>
+                <h4 style="font-family:'Amiri'; color:#8c6d33; font-size:1.2rem;">Wedding Invitation</h4>
+                <p style="font-family:'Cinzel'; font-size:1.1rem; font-weight:bold; color:#1a1a1a; margin-top:5px;">AHMED ♥ MANAR</p>
+            </div>
+        </div>
+    </div>
 
-    <div id="particles-container"></div>
-
+    <!-- ملف الموسيقى (تأكد من رفع ملف wedding.mp3 إلى المستودع) -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="wedding.mp3" type="audio/mpeg">
     </audio>
 
     <button id="music-control" onclick="toggleMusic()">
-        <span id="music-icon">🎵</span> <span id="music-text">تشغيل الموسيقى</span>
+        <span id="music-icon">⏸️</span> <span id="music-text">إيقاف الموسيقى</span>
     </button>
 
-    <div class="main-content">
+    <div class="main-content" id="mainContent">
         
-        <section>
+        <section class="scroll-reveal">
+            <div class="bouquet-container">💐</div>
             <div class="basmala">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
             <div class="sub-en">In the name of Allah, the Most Gracious, the Most Merciful</div>
             
             <div class="quran-verse">
                 ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ﴾
             </div>
+            <div class="ornament-divider">❖</div>
             <p>نتشارك معكم فرحتنا في يوم زفافنا</p>
             <p class="sub-en">We share with you the joy of our wedding day</p>
             <div class="names">أحمد & منار</div>
             <div class="names-en" style="font-size: 1.35rem;">AHMED ♥ MANAR</div>
         </section>
 
-        <section>
+        <section class="scroll-reveal">
             <h3 class="section-title">دعوة زفاف</h3>
             <div class="sub-en">Wedding Invitation</div>
+            <div class="ornament-divider">❖</div>
             <p>تكتمل فرحتنا بوجودكم معنا، حضوركم يشرفنا ويزيدنا بهجة وسروراً في ليلة العمر.</p>
             <p class="sub-en">Our joy is complete with your presence. Your attendance honors us and adds joy to our special night.</p>
         </section>
 
-        <section>
+        <section class="scroll-reveal">
             <h3 class="section-title">العد التنازلي ليومنا المنتظر</h3>
             <div class="sub-en">Countdown to our awaited day</div>
+            <div class="ornament-divider">❖</div>
             <div class="countdown-container">
                 <div class="countdown-box"><span id="days">00</span><small>يوم / Days</small></div>
                 <div class="countdown-box"><span id="hours">00</span><small>ساعة / Hrs</small></div>
@@ -120,86 +174,12 @@
             </div>
         </section>
 
-        <section>
+        <section class="scroll-reveal">
             <h3 class="section-title">ميعاد الحفل</h3>
             <div class="sub-en">Wedding Time</div>
+            <div class="ornament-divider">❖</div>
             <div class="details-box">
                 <p>📅 <strong>الثلاثاء، ١ ديسمبر ٢٠٢٦</strong></p>
                 <p class="sub-en">Tuesday, December 1, 2026</p>
                 <hr style="border: 0; border-top: 1px solid rgba(197,160,89,0.3); margin: 10px 0;">
-                <p>🕒 <strong>الساعة ٦:٠٠ مساءً</strong></p>
-                <p class="sub-en">6:00 PM</p>
-            </div>
-        </section>
-
-        <section>
-            <h3 class="section-title">مكان الحفل</h3>
-            <div class="sub-en">Wedding Venue</div>
-            <div class="details-box">
-                <p>📍 <strong>قاعة رومانيكا جولدن جروب</strong></p>
-                <p class="sub-en">Romanica Golden Group Hall</p>
-            </div>
-            <a href="https://maps.google.com/?q=30.019161%2C31.320984" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
-        </section>
-
-        <section style="margin-bottom: 50px;">
-            <h3 class="section-title" style="font-size: 2.2rem;">شكراً لحضوركم</h3>
-            <div class="sub-en">Thank you for attending</div>
-            <p>نسأل الله أن يبارك في هذا الزواج، وأن يرزقنا السعادة والمودة والرحمة، وأن يجعل أيامكم كلها أفراحاً.</p>
-            <p class="sub-en">We ask Allah to bless this marriage, grant us happiness, affection, and mercy, and make all your days joyful.</p>
-            <div class="names" style="font-size: 2rem;">أحمد & منار</div>
-            <div class="names-en">AHMED ♥ MANAR</div>
-        </section>
-
-    </div>
-
-    <script>
-        function createParticles() {
-            const container = document.getElementById('particles-container');
-            for (let i = 0; i < 30; i++) {
-                let particle = document.createElement('div');
-                particle.className = 'particle';
-                let size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particle.style.animationDelay = (Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
-
-        const audio = document.getElementById("wedding-audio");
-        const musicText = document.getElementById("music-text");
-        const musicIcon = document.getElementById("music-icon");
-        let isMusicPlaying = false;
-
-        function toggleMusic() {
-            if (isMusicPlaying) {
-                audio.pause();
-                musicText.innerText = "تشغيل الأغنية";
-                musicIcon.innerText = "🎵";
-            } else {
-                audio.play();
-                musicText.innerText = "إيقاف الأغنية";
-                musicIcon.innerText = "⏸️";
-            }
-            isMusicPlaying = !isMusicPlaying;
-        }
-
-        const weddingDate = new Date("Dec 1, 2026 18:00:00").getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance < 0) return;
-
-            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-    </script>
-</body>
-</html>
+                <p>🕒
