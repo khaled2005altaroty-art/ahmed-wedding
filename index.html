@@ -12,16 +12,15 @@
             padding: 0;
         }
         body {
-            background: #fbf8f2; /* بيج دافئ وراقي */
+            background: #fbf8f2;
             font-family: 'Cairo', sans-serif;
-            color: #1a1a1a; /* نص أسود واضح */
+            color: #1a1a1a;
             text-align: center;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* --- تأثير ذرات ذهبية هادئة في الخلفية البيج --- */
         #particles-container {
             position: fixed;
             top: 0;
@@ -45,7 +44,6 @@
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
-        /* --- ديكورات الزوايا الفخمة --- */
         .corner-decoration {
             position: fixed;
             width: 60px;
@@ -60,7 +58,6 @@
         .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
         .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
 
-        /* --- إطار بوكيه الورد --- */
         .couple-frame-container {
             width: 210px;
             height: 210px;
@@ -93,7 +90,6 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        /* شاشة البداية والظرف باللون البيج */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -127,65 +123,4 @@
             color: #555555;
             margin-bottom: 25px;
         }
-
-        .envelope-container {
-            position: relative;
-            width: 90%;
-            max-width: 440px;
-            height: 280px;
-            background: #f2ebd9;
-            border: 2px solid #c5a059;
-            border-radius: 6px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .envelope-container:hover { transform: scale(1.02); }
-
-        .flap-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 140px;
-            background: #e8decc;
-            clip-path: polygon(0 0, 50% 100%, 100% 0);
-            border-bottom: 1px solid rgba(197,160,89,0.4);
-            transform-origin: top;
-            transition: transform 0.8s ease, opacity 0.5s ease;
-            z-index: 4;
-        }
-        .flap-left { position: absolute; top: 0; left: 0; width: 220px; height: 100%; background: #e0d4c1; clip-path: polygon(0 0, 100% 50%, 0 100%); z-index: 2; }
-        .flap-right { position: absolute; top: 0; right: 0; width: 220px; height: 100%; background: #e0d4c1; clip-path: polygon(100% 0, 0 50%, 100% 100%); z-index: 2; }
-        .flap-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 140px; background: #eae1d0; clip-path: polygon(0 100%, 50% 0, 100% 100%); z-index: 2; }
-
-        .envelope-seal {
-            position: absolute;
-            z-index: 5;
-            width: 75px;
-            height: 75px;
-            background: #c5a059;
-            color: #fbf8f2;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(197,160,89,0.5);
-            border: 2px solid #ffffff;
-            transition: transform 0.5s ease, opacity 0.4s ease;
-        }
-
-        .envelope-paper {
-            position: absolute;
-            width: 82%;
-            background: #fbf8f2;
-            border: 1px solid #c5a059;
-            padding: 20px;
-            border-radius: 6px;
-            text-align:
+        
