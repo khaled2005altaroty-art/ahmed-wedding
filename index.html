@@ -12,16 +12,16 @@
             padding: 0;
         }
         body {
-            background: #0a1128; /* كحلي ملكي عميق */
+            background: #fbf8f2; /* بيج دافئ وراقي */
             font-family: 'Cairo', sans-serif;
-            color: #f0f2f5;
+            color: #1a1a1a; /* نص أسود واضح */
             text-align: center;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* --- تأثير ذرات الذهب المتطايرة --- */
+        /* --- تأثير ذرات ذهبية هادئة في الخلفية البيج --- */
         #particles-container {
             position: fixed;
             top: 0;
@@ -33,27 +33,26 @@
         }
         .particle {
             position: absolute;
-            background: #d4af37;
+            background: #c5a059;
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.35;
             animation: floatUp 15s infinite linear;
-            box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37;
         }
         @keyframes floatUp {
             0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.5; }
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
-        /* --- ديكورات الزوايا الذهبية الثابتة --- */
+        /* --- ديكورات الزوايا الفخمة --- */
         .corner-decoration {
             position: fixed;
             width: 60px;
             height: 60px;
             z-index: 999;
             pointer-events: none;
-            border: 2px solid rgba(212, 175, 55, 0.6);
+            border: 2px solid rgba(197, 160, 89, 0.7);
             opacity: 0.8;
         }
         .top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; border-top-left-radius: 20px; }
@@ -61,7 +60,7 @@
         .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 20px; }
         .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 20px; }
 
-        /* --- إطار العريس والعروسة المطابق للصورة تماماً --- */
+        /* --- إطار العريس والعروسة --- */
         .couple-frame-container {
             width: 210px;
             height: 210px;
@@ -72,14 +71,13 @@
             align-items: center;
         }
         
-        /* إطار زخرفي خارجي فخم */
         .couple-ornament-border {
             position: absolute;
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 3px double #d4af37;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            border: 3px double #c5a059;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
             animation: rotateSlow 30s linear infinite;
         }
         @keyframes rotateSlow {
@@ -91,18 +89,18 @@
             height: 170px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid #d4af37;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            border: 4px solid #c5a059;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        /* شاشة البداية والظرف بالكحلي والذهبي */
+        /* شاشة البداية والظرف باللون البيج */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0a1128;
+            background: #fbf8f2;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -115,9 +113,9 @@
         .instruction-title {
             font-family: 'Amiri', serif;
             font-size: 1.6rem;
-            color: #d4af37;
+            color: #8c6d33;
             margin-bottom: 5px;
-            text-shadow: 0 0 15px rgba(212,175,55,0.4);
+            text-shadow: 0 0 10px rgba(197,160,89,0.2);
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
@@ -126,7 +124,7 @@
         }
         .instruction-sub {
             font-size: 0.95rem;
-            color: #a3b8ad;
+            color: #555555;
             margin-bottom: 25px;
         }
 
@@ -135,10 +133,10 @@
             width: 90%;
             max-width: 440px;
             height: 280px;
-            background: #101c3d;
-            border: 2px solid #d4af37;
+            background: #f2ebd9;
+            border: 2px solid #c5a059;
             border-radius: 6px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -153,24 +151,24 @@
             left: 0;
             width: 100%;
             height: 140px;
-            background: #172754;
+            background: #e8decc;
             clip-path: polygon(0 0, 50% 100%, 100% 0);
-            border-bottom: 1px solid rgba(212,175,55,0.4);
+            border-bottom: 1px solid rgba(197,160,89,0.4);
             transform-origin: top;
             transition: transform 0.8s ease, opacity 0.5s ease;
             z-index: 4;
         }
-        .flap-left { position: absolute; top: 0; left: 0; width: 220px; height: 100%; background: #0d1633; clip-path: polygon(0 0, 100% 50%, 0 100%); z-index: 2; }
-        .flap-right { position: absolute; top: 0; right: 0; width: 220px; height: 100%; background: #0d1633; clip-path: polygon(100% 0, 0 50%, 100% 100%); z-index: 2; }
-        .flap-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 140px; background: #132047; clip-path: polygon(0 100%, 50% 0, 100% 100%); z-index: 2; }
+        .flap-left { position: absolute; top: 0; left: 0; width: 220px; height: 100%; background: #e0d4c1; clip-path: polygon(0 0, 100% 50%, 0 100%); z-index: 2; }
+        .flap-right { position: absolute; top: 0; right: 0; width: 220px; height: 100%; background: #e0d4c1; clip-path: polygon(100% 0, 0 50%, 100% 100%); z-index: 2; }
+        .flap-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 140px; background: #eae1d0; clip-path: polygon(0 100%, 50% 0, 100% 100%); z-index: 2; }
 
         .envelope-seal {
             position: absolute;
             z-index: 5;
             width: 75px;
             height: 75px;
-            background: #d4af37;
-            color: #0a1128;
+            background: #c5a059;
+            color: #fbf8f2;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -178,7 +176,7 @@
             font-family: 'Cinzel', serif;
             font-size: 1.3rem;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.8);
+            box-shadow: 0 4px 15px rgba(197,160,89,0.5);
             border: 2px solid #ffffff;
             transition: transform 0.5s ease, opacity 0.4s ease;
         }
@@ -186,8 +184,8 @@
         .envelope-paper {
             position: absolute;
             width: 82%;
-            background: #0a1128;
-            border: 1px solid #d4af37;
+            background: #fbf8f2;
+            border: 1px solid #c5a059;
             padding: 20px;
             border-radius: 6px;
             text-align: center;
@@ -210,13 +208,13 @@
             z-index: 2;
         }
         section {
-            background: rgba(16, 28, 61, 0.9);
+            background: #ffffff; /* بطاقات بيضاء نقية مع خلفية بيج عامة */
             backdrop-filter: blur(5px);
             margin: 30px 0;
             padding: 40px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            border: 1px solid rgba(212,175,55,0.35);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197, 160, 89, 0.25);
             position: relative;
             opacity: 0;
             transform: translateY(40px);
@@ -224,26 +222,26 @@
         }
         section.visible { opacity: 1; transform: translateY(0); }
         section::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #d4af37; border-radius: 2px;
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #c5a059; border-radius: 2px;
         }
         
-        .names-en { font-family: 'Cinzel', serif; color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; }
-        .basmala { font-family: 'Amiri', serif; font-size: 1.5rem; color: #d4af37; margin-bottom: 15px; font-weight: bold; }
-        .quran-verse { font-family: 'Amiri', serif; font-size: 1.35rem; color: #d4af37; line-height: 2.2; margin-bottom: 20px; padding: 0 10px; }
-        .names { font-family: 'Amiri', serif; font-size: 2.6rem; color: #ffffff; margin: 15px 0; font-weight: 700; }
-        .section-title { font-family: 'Amiri', serif; font-size: 1.8rem; color: #d4af37; margin-bottom: 8px; }
-        p { font-size: 1.05rem; line-height: 1.8; color: #e2e8f0; margin: 8px 0; }
-        .sub-en { font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px; }
-        .details-box { background: #0a1128; padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(212,175,55,0.3); }
-        .map-btn { display: inline-block; margin-top: 20px; background: #d4af37; color: #0a1128; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; }
-        .map-btn:hover { background: #e6c553; transform: translateY(-3px); }
+        .names-en { font-family: 'Cinzel', serif; color: #8c6d33; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; }
+        .basmala { font-family: 'Amiri', serif; font-size: 1.5rem; color: #8c6d33; margin-bottom: 15px; font-weight: bold; }
+        .quran-verse { font-family: 'Amiri', serif; font-size: 1.35rem; color: #1a1a1a; line-height: 2.2; margin-bottom: 20px; padding: 0 10px; }
+        .names { font-family: 'Amiri', serif; font-size: 2.6rem; color: #1a1a1a; margin: 15px 0; font-weight: 700; }
+        .section-title { font-family: 'Amiri', serif; font-size: 1.8rem; color: #8c6d33; margin-bottom: 8px; }
+        p { font-size: 1.05rem; line-height: 1.8; color: #333333; margin: 8px 0; }
+        .sub-en { font-size: 0.9rem; color: #666666; margin-bottom: 15px; }
+        .details-box { background: #fbf8f2; padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px solid rgba(197, 160, 89, 0.3); }
+        .map-btn { display: inline-block; margin-top: 20px; background: #c5a059; color: #ffffff; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(197,160,89,0.3); transition: 0.3s; }
+        .map-btn:hover { background: #b08d47; transform: translateY(-3px); }
         .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .countdown-box { background: #0a1128; padding: 12px 8px; border-radius: 12px; min-width: 70px; border: 1px solid #d4af37; }
-        .countdown-box span { display: block; font-size: 1.5rem; font-weight: 700; color: #d4af37; }
-        .countdown-box small { font-size: 0.75rem; color: #94a3b8; }
+        .countdown-box { background: #fbf8f2; padding: 12px 8px; border-radius: 12px; min-width: 70px; border: 1px solid #c5a059; }
+        .countdown-box span { display: block; font-size: 1.5rem; font-weight: 700; color: #8c6d33; }
+        .countdown-box small { font-size: 0.75rem; color: #555555; }
 
         #music-control {
-            position: fixed; bottom: 20px; left: 20px; background: #d4af37; color: #0a1128; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.6); display: none; align-items: center; gap: 8px;
+            position: fixed; bottom: 20px; left: 20px; background: #c5a059; color: #ffffff; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; align-items: center; gap: 8px;
         }
 
         @media (max-width: 600px) {
@@ -259,7 +257,7 @@
     <div class="corner-decoration bottom-left"></div>
     <div class="corner-decoration bottom-right"></div>
 
-    <!-- حاوية الذرات الذهبية المتطايرة -->
+    <!-- حاوية الذرات الذهبية الهادئة -->
     <div id="particles-container"></div>
 
     <!-- ملف الصوت -->
@@ -285,7 +283,7 @@
             <div class="envelope-seal">A ♥ M</div>
 
             <div class="envelope-paper">
-                <div style="font-family: 'Amiri', serif; color: #d4af37; font-size: 1.35rem;">أحمد & منار</div>
+                <div style="font-family: 'Amiri', serif; color: #8c6d33; font-size: 1.35rem;">أحمد & منار</div>
                 <div class="names-en" style="font-size: 1.05rem;">AHMED ♥ MANAR</div>
             </div>
         </div>
@@ -294,7 +292,7 @@
     <div class="main-content" id="invitationContent">
         
         <section class="scroll-reveal">
-            <!-- الإطار المزخرف الفخم للصورة تماماً مثل الصورة المرجعية -->
+            <!-- الإطار المزخرف الفخم للصورة -->
             <div class="couple-frame-container">
                 <div class="couple-ornament-border"></div>
                 <img class="couple-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="عريس وعروسة">
@@ -334,11 +332,11 @@
             <h3 class="section-title">ميعاد الحفل</h3>
             <div class="sub-en">Wedding Time</div>
             <div class="details-box">
-                <p>📅 <strong>الأربعاء، ٢٥ نوفمبر ٢٠٢٦</strong></p>
-                <p class="sub-en">Wednesday, November 25, 2026</p>
-                <hr style="border: 0; border-top: 1px solid rgba(212,175,55,0.2); margin: 10px 0;">
-                <p>🕒 <strong>الساعة ٣:٠٠ عصراً</strong></p>
-                <p class="sub-en">3:00 PM</p>
+                <p>📅 <strong>الثلاثاء، ١ ديسمبر ٢٠٢٦</strong></p>
+                <p class="sub-en">Tuesday, December 1, 2026</p>
+                <hr style="border: 0; border-top: 1px solid rgba(197,160,89,0.3); margin: 10px 0;">
+                <p>🕒 <strong>الساعة ٦:٠٠ مساءً</strong></p>
+                <p class="sub-en">6:00 PM</p>
             </div>
         </section>
 
@@ -346,12 +344,11 @@
             <h3 class="section-title">مكان الحفل</h3>
             <div class="sub-en">Wedding Venue</div>
             <div class="details-box">
-                <p>📍 <strong>قاعة عُبار</strong></p>
-                <p class="sub-en">Obar Hall</p>
-                <p>منيا القمح - الشرقية، مصر</p>
-                <p class="sub-en">Minya Al Qamh - Sharqia, Egypt</p>
+                <p>📍 <strong>قاعة رومانيكا جولدن جروب</strong></p>
+                <p class="sub-en">Romanica Golden Group Hall</p>
             </div>
-            <a href="https://maps.google.com/?q=Obar+Hall" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
+            <!-- رابط الخريطة الجديد بالإحداثيات المطلوبة -->
+            <a href="https://maps.google.com/?q=30.019161%2C31.320984" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
         </section>
 
         <section class="scroll-reveal" style="margin-bottom: 50px;">
@@ -368,7 +365,7 @@
     <script>
         function createParticles() {
             const container = document.getElementById('particles-container');
-            const particleCount = 40;
+            const particleCount = 30;
             for (let i = 0; i < particleCount; i++) {
                 let particle = document.createElement('div');
                 particle.className = 'particle';
@@ -432,7 +429,8 @@
             }, 800);
         }
 
-        const weddingDate = new Date("Nov 25, 2026 15:00:00").getTime();
+        // تحديث تاريخ الزفاف إلى 1 ديسمبر 2026 الساعة 6 مساءً
+        const weddingDate = new Date("Dec 1, 2026 18:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
