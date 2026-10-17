@@ -17,6 +17,7 @@
             position: relative;
         }
 
+        /* شاشة الظرف الفاخر بخلفية بيج دافئة */
         #envelope-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #f3ede2; display: flex; justify-content: center; align-items: center;
@@ -67,6 +68,7 @@
         }
         section.visible { opacity: 1; transform: translateY(0); }
 
+        /* إطار ضوء ذهبي متلألئ حول الكروت */
         section::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), transparent);
@@ -77,6 +79,7 @@
             50%, 100% { left: 200%; }
         }
 
+        /* الفواصل الذهبية مع الحركة والضوء */
         .ornament-divider {
             display: flex; align-items: center; justify-content: center; margin: 25px 0; color: #c5a059;
             position: relative;
@@ -124,10 +127,15 @@
         .countdown-box { background: #fbf8f2; padding: 12px 8px; border-radius: 12px; min-width: 70px; border: 1px solid #c5a059; }
         .countdown-box span { display: block; font-size: 1.5rem; font-weight: 700; color: #8c6d33; }
         .countdown-box small { font-size: 0.75rem; color: #555555; }
+
+        #music-control {
+            position: fixed; bottom: 20px; left: 20px; background: #c5a059; color: #ffffff; border: 2px solid #fff; padding: 8px 16px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; z-index: 1000; display: none; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
 
+    <!-- شاشة الظرف -->
     <div id="envelope-overlay" onclick="openEnvelopeAnimation()">
         <div class="envelope-wrapper">
             <div class="envelope-flap" id="envelopeFlap"></div>
@@ -143,6 +151,15 @@
             </div>
         </div>
     </div>
+
+    <!-- تشغيل ملف wedding.mp3 الموجود في المستودع -->
+    <audio id="wedding-audio" loop preload="auto">
+        <source src="wedding.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> <span id="music-text">تشغيل الموسيقى</span>
+    </button>
 
     <div class="main-content" id="mainContent">
         <section class="scroll-reveal">
@@ -222,6 +239,7 @@
 
     <script>
         let isOpened = false;
+        let isMusicPlaying = false;
 
         function openEnvelopeAnimation() {
             if (isOpened) return;
@@ -232,6 +250,8 @@
             const letter = document.getElementById("envelopeLetter");
             const overlay = document.getElementById("envelope-overlay");
             const mainContent = document.getElementById("mainContent");
+            const musicBtn = document.getElementById("music-control");
+            const audio = document.getElementById("wedding-audio");
 
             flap.classList.add("open-flap");
             seal.style.opacity = "0";
@@ -240,14 +260,44 @@
                 letter.classList.add("pull-letter");
             }, 300);
 
+            // تشغيل الصوت تلقائياً عند فتح الظرف
+            if (audio) {
+                audio.play().then(() => {
+                    isMusicPlaying = true;
+                    document.getElementById("music-text").innerText = "إيقاف الموسيقى";
+                    document.getElementById("music-icon").innerText = "⏸️";
+                }).catch(e => {
+                    console.log("Autoplay restricted by browser.");
+                });
+            }
+
             setTimeout(() => {
                 overlay.style.opacity = "0";
                 setTimeout(() => {
                     overlay.style.display = "none";
                     mainContent.classList.add("show");
+                    musicBtn.style.display = "flex";
                     checkScroll();
                 }, 600);
             }, 1100);
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById("wedding-audio");
+            const musicText = document.getElementById("music-text");
+            const musicIcon = document.getElementById("music-icon");
+
+            if (isMusicPlaying) {
+                audio.pause();
+                musicText.innerText = "تشغيل الموسيقى";
+                musicIcon.innerText = "🎵";
+            } else {
+                audio.play().then(() => {
+                    musicText.innerText = "إيقاف الموسيقى";
+                    musicIcon.innerText = "⏸️";
+                }).catch(e => console.log(e));
+            }
+            isMusicPlaying = !isMusicPlaying;
         }
 
         function checkScroll() {
