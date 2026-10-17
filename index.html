@@ -81,7 +81,7 @@
             50%, 100% { left: 200%; }
         }
 
-        /* تحسين الفواصل لتنتهي بإضاءة وبريق متحرك ومستمر */
+        /* الفواصل مع حركة ضوئية متدرجة */
         .ornament-divider {
             display: flex; align-items: center; justify-content: center; margin: 25px 0; color: #c5a059;
             position: relative;
@@ -140,8 +140,8 @@
 </head>
 <body>
 
-    <div id="envelope-overlay">
-        <div class="envelope-wrapper" onclick="openEnvelopeAnimation()">
+    <div id="envelope-overlay" onclick="openEnvelopeAnimation()">
+        <div class="envelope-wrapper">
             <div class="envelope-flap" id="envelopeFlap"></div>
             <div class="wax-seal" id="waxSeal">💌</div>
             
@@ -175,63 +175,4 @@
             
             <div class="invite-quotes-box">
                 <div class="invite-ar">بقلوب مليئة بالحب والامتنان، ندعوكم بكل سرور لمشاركتنا الاحتفال بيوم زفافنا ♥️♥️</div>
-                <div class="invite-en">With hearts full of love and gratitude, we joyfully invite you to join us in celebrating our wedding day ♥️♥️</div>
-            </div>
-
-            <div class="quran-verse">
-                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ﴾
-            </div>
-            <div class="ornament-divider">❖</div>
-            <div class="names">أحمد & منار</div>
-            <div class="names-en" style="font-size: 1.35rem;">AHMED ♥ MANAR</div>
-        </section>
-
-        <section class="scroll-reveal">
-            <h3 class="section-title">دعوة زفاف</h3>
-            <div class="sub-en">Wedding Invitation</div>
-            <div class="ornament-divider">❖</div>
-            <p>تكتمل فرحتنا بوجودكم معنا، حضوركم يشرفنا ويزيدنا بهجة وسروراً في ليلة العمر.</p>
-            <p class="sub-en">Our joy is complete with your presence. Your attendance honors us and adds joy to our special night.</p>
-        </section>
-
-        <section class="scroll-reveal">
-            <h3 class="section-title">العد التنازلي ليومنا المنتظر</h3>
-            <div class="sub-en">Countdown to our awaited day</div>
-            <div class="ornament-divider">❖</div>
-            <div class="countdown-container">
-                <div class="countdown-box"><span id="days">00</span><small>يوم / Days</small></div>
-                <div class="countdown-box"><span id="hours">00</span><small>ساعة / Hrs</small></div>
-                <div class="countdown-box"><span id="minutes">00</span><small>دقيقة / Mins</small></div>
-                <div class="countdown-box"><span id="seconds">00</span><small>ثانية / Secs</small></div>
-            </div>
-        </section>
-
-        <section class="scroll-reveal">
-            <h3 class="section-title">ميعاد الحفل</h3>
-            <div class="sub-en">Wedding Time</div>
-            <div class="ornament-divider">❖</div>
-            <div class="details-box">
-                <p>📅 <strong>الثلاثاء، ١ ديسمبر ٢٠٢٦</strong></p>
-                <p class="sub-en">Tuesday, December 1, 2026</p>
-                <hr style="border: 0; border-top: 1px solid rgba(197,160,89,0.3); margin: 10px 0;">
-                <p>🕒 <strong>الساعة ٦:٠٠ مساءً</strong></p>
-                <p class="sub-en">6:00 PM</p>
-            </div>
-        </section>
-
-        <section class="scroll-reveal">
-            <h3 class="section-title">مكان الحفل</h3>
-            <div class="sub-en">Wedding Venue</div>
-            <div class="ornament-divider">❖</div>
-            <div class="details-box">
-                <p>📍 <strong>قاعة رومانيكا جولدن جروب</strong></p>
-                <p class="sub-en">Romanica Golden Group Hall</p>
-            </div>
-            <a href="https://maps.google.com/?q=30.019161%2C31.320984" class="map-btn" target="_blank">اضغط للوصول للمكان 🗺️</a>
-        </section>
-
-        <section class="scroll-reveal" style="margin-bottom: 50px;">
-            <h3 class="section-title" style="font-size: 2.2rem;">شكراً لحضوركم</h3>
-            <div class="sub-en">Thank you for attending</div>
-            <div class="ornament-divider">❖</div>
-            <p>نسأل الله أن يبارك في هذا الزواج، وأن يرزقنا السعادة والمودة والرحمة
+                <div class="invite-
