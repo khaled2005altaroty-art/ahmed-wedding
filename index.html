@@ -62,17 +62,40 @@
 
         section {
             background: #ffffff; margin: 40px 0; padding: 45px 25px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(197, 160, 89, 0.25);
             position: relative; opacity: 0; transform: translateY(40px);
             transition: all 0.8s ease-out;
+            overflow: hidden;
         }
         section.visible { opacity: 1; transform: translateY(0); }
 
+        /* تأثير إطار الضوء الذهبي المتحرك حول البطاقة */
+        section::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), transparent);
+            transform: skewX(-25deg);
+            animation: borderGlow 4s infinite;
+        }
+        @keyframes borderGlow {
+            0% { left: -100%; }
+            50%, 100% { left: 200%; }
+        }
+
+        /* تأثير خط الفاصل الذهبي اللامع مع الضوء المتحرك */
         .ornament-divider {
             display: flex; align-items: center; justify-content: center; margin: 25px 0; color: #c5a059;
+            position: relative;
         }
         .ornament-divider::before, .ornament-divider::after {
-            content: ""; height: 1px; width: 100px; background: linear-gradient(90deg, transparent, #c5a059, transparent); margin: 0 15px;
+            content: ""; height: 2px; width: 100px;
+            background: linear-gradient(90deg, transparent, #c5a059, #fff, #c5a059, transparent);
+            background-size: 200% 100%;
+            margin: 0 15px;
+            animation: goldGlow 3s linear infinite;
+        }
+        @keyframes goldGlow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         .bouquet-container {
